@@ -1,8 +1,10 @@
 package com.appsmontreal.menuwithalertdialogandsharedpreferences;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +17,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+         new AlertDialog.Builder(this)
+                 .setIcon(android.R.drawable.ic_menu_edit)
+                 .setTitle("Language")
+                 .setMessage("Which language do you prefer?")
+                 .setPositiveButton("English", new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                     }
+                 })
+                 .setNegativeButton("Français", new DialogInterface.OnClickListener() {
+                     @Override
+                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                     }
+                 })
+                 .show();
     }
 
     @Override
