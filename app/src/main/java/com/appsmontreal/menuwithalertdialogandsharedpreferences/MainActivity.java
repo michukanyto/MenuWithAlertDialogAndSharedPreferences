@@ -25,17 +25,24 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private TextView textView;
+    String language;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        launchAlert();
+//        launchAlert();
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         textView = findViewById(R.id.textView);
-        textView.setText(sharedPreferences.getString("language","......"));
+        language = sharedPreferences.getString("language","Error");
+        textView.setText(language);
+        // Controlling that the message just appear the first time
+        if (language.equals("Error")) {
+            launchAlert();
+        }
+
     }
 
     @Override
@@ -79,16 +86,12 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("English", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                         editor.putString("language","English").apply();
-//                         textView.setText(sharedPreferences.getString("language","Error"));
                         setLanguage("English");
                     }
                 })
                 .setNegativeButton("Français", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                         editor.putString("language","Français").apply();
-//                         textView.setText(sharedPreferences.getString("language","Error"));
                         setLanguage("Français");
                     }
                 })
